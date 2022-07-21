@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="container-fluid text-center" id="maintxtimg">
+
+        <h1 id="maintxt">Spotify2YT</h1>
+        <h6 id="maintxt2">Bring your headbangers to YouTube.</h6>
+
+</div>
+
+
+<div class="container-fluid text-center" id="section2">
+    @if (Model.curUser.SpotifyAuth is null)
+    {
+        <p>Click <a asp-page="/Redirect">here</a> to authenticate Spotify</p>
+    }
+    else
+    {
+        @if (Model.curUser.isSubmitted == false)
+        {
+            <form method="post">
+                <input placeholder="Enter the Spotify playlist name" width="750" id="chicken" name="chicken" />
+                <input type="submit" asp-page-handler="Playlist"/>
+            </form>
+
+        }
+        else
+        {
+            @if (Model.curUser.GoogleAuth is null)
+            {
+                <p>Click <a asp-page="/RedirectGoogle">here</a> to authenticate Google</p>
+            }
+        }
+
+    }
+</div>
